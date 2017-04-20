@@ -1,0 +1,98 @@
+.App {
+  text-align: center;
+}
+
+.logo-animate {
+  animation: App-logo-spin infinite 20s linear;
+}
+
+.main-logo {
+  height: 80px;
+}
+
+.App-nav {
+  background-color: #2a2a2a;
+  height: 22px;
+  padding: 22px;
+  font-size: 18px;  
+  color: white;
+}
+
+.App-nav-title {
+  float: left;
+}
+
+.App-nav-button {
+  float: right;
+}
+
+.App-nav-img {
+  cursor: pointer;
+  height: 45px;
+  margin-top: -11px;
+  border-radius: 50%;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.AppBody {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.AppBody-fb-db {
+  text-align: left;
+  border-radius: 4px;
+  padding: 15px;
+  background: #f1f1f1
+}
+
+.App-form {
+   text-align: left;
+  border-radius: 4px;
+  padding: 15px;
+  background: #f1f1f1
+}
+.App-form .text {
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  width: 460px;
+}
+
+.App-form .button {
+    margin-left: 10px;
+    color: #fff;
+    background-color: #0275d8;
+    border-color: #0275d8;
+    white-space: nowrap;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+} 
