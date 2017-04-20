@@ -1,14 +1,14 @@
-React + Firebase sample
+# React + Firebase sample
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-### Includes
+### Includes:
 - Setup Firebase
 - Authentication
 - Basic Retrieve and push data
 
 ### Getting Started
-- Create your db in `console.firebase.google.com`.
+- Create your db in `http://console.firebase.google.com`.
 - Copy config in dashboard's  **Web Setup** and paste to `firebase.js`.
 - Clone project and install dependencies.
 ```
