@@ -18,7 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 > npm install
 ```
 
-### Deployment using firebase
+### Deployment process with firebase
 1. Install firebase tool globally. (You may need `sudo` here)
 ```
 > npm install -g firebase-tools
@@ -41,6 +41,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Select **Yes** for configuring single app page. This is suitable also when app is using `react-router`.
 
 **Firebase initialization complete!**
+
 5. Then we will build our app.
 ```
 > npm build
