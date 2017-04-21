@@ -5,7 +5,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Includes:
 - Setup Firebase
 - Authentication
-- Basic Retrieve and push data
+- Database: Retrieve and push data
+- Cloud Storage: Upload file and save to database
 
 ### Getting Started
 - Create your db in `http://console.firebase.google.com`.
