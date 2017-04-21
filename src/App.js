@@ -119,7 +119,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-nav">
-          <span className="App-nav-title">React + Firebase Sample</span>
+          <span className="App-nav-title">React + Firebase Setup</span>
           <span className="App-nav-button">{this.state.currentUser.email ? this.displayCurrentUser() : <a href="#" onClick={this.signIn}>Sign In</a>}</span>
         </div>
         <div className="App-header">
