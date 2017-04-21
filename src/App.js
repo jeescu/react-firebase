@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { database, auth, googleAuthProvider } from './firebase';
+import { database, auth, googleAuthProvider, storage } from './firebase';
+
+import FileInput from 'react-file-input';
 
 import reactLogo from './react-logo.svg';
 import firebaseLogo from './firebase-logo.svg';
@@ -10,27 +12,56 @@ class App extends Component {
     super(props);
 
     this.state = {
-      data: null,
+      guides: null,
       newData: '',
-      currentUser: {}
+      currentUser: {},
+      userImages: null
     }
+
+    this.userRef = database.ref('/users').child('Anonymous');
+    this.guidesRef = database.ref('/guides');
+    this.userStorageRef = storage.ref('/user-files').child('Anonymous');
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileSubmit = this.handleFileSubmit.bind(this);
     this.displayCurrentUser = this.displayCurrentUser.bind(this);
   }
 
   componentDidMount() {
     auth.onAuthStateChanged((currentUser) => {
-      database.ref('/guides').on('value', (snapshot) => {
-        const data = snapshot.val();
-        this.setState({ data });
-      });
 
-      this.setState({ currentUser: currentUser || {} })
+      if (currentUser) {
+        // Init current user Refs
+        this.userRef = database.ref('/users').child(currentUser.uid);
+        this.userStorageRef = storage.ref('/user-files').child(currentUser.uid);
+
+        this.guidesRef.on('value', (snapshot) => {
+          const guides = snapshot.val();
+          this.setState({ guides });
+        });
+
+        this.userRef.child('images').on('value', (snapshot) => {
+          const userImages = snapshot.val();
+          if (userImages) {
+            this.setState({ userImages });
+          }
+        });
+
+        // Add user to users database if not exist
+        this.userRef.once('value', (snapshot) => {
+          const userData = snapshot.val();
+          if (!userData) {
+            this.userRef.set({ name: currentUser.displayName });
+          }
+        });
+
+        this.setState({ currentUser });
+      }
     });
   }
 
+  // Form Events
   handleChange(event) {
     const newData = event.target.value;
     this.setState({ newData })
@@ -38,10 +69,23 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    database.ref('/guides').push({ name: this.state.newData });
+    this.guidesRef.push({ name: this.state.newData });
   }
 
-  // Auth
+  handleFileSubmit(event) {
+    const file = event.target.files[0];
+    const uploadTask = this.userStorageRef.child(file.name).put(file, { contentType: file.type });
+
+    uploadTask.on('state_changed', (snapshot) => {
+      console.log(snapshot.bytesTransferred / snapshot.totalBytes * 100 + '%');
+    });
+
+    uploadTask.then((snapshot) => {
+      this.userRef.child('images').push(snapshot.downloadURL);
+    });
+  }
+
+  // Auth Events
   signIn() {
     auth.signInWithPopup(googleAuthProvider);
   }
@@ -57,11 +101,23 @@ class App extends Component {
     />
   }
 
+  displayUserImages() {
+    const { userImages } = this.state;
+    if (userImages) {
+      const imageIds = Object.keys(userImages);
+      return imageIds.map((id) => <img
+        key={id}
+        className="App-image"
+        src={userImages[id]}
+      />);
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <div className="App-nav">
-          <span className="App-nav-title">Firebase + React Sample</span>
+          <span className="App-nav-title">React + Firebase Sample</span>
           <span className="App-nav-button">{this.state.currentUser.email ? this.displayCurrentUser() : <a href="#" onClick={this.signIn}>Sign In</a>}</span>
         </div>
         <div className="App-header">
@@ -69,14 +125,32 @@ class App extends Component {
           <img src={firebaseLogo} className="main-logo" alt="logo" />
           <h2>Welcome to React and Firebase</h2>
         </div>
+
         <p className="App-intro">
+          <code><b>Database</b></code>
         </p>
         <div className="AppBody">
           <form className="App-form" onSubmit={this.handleSubmit}>
             <input className="text" name="name" placeholder="New data" type="text" onChange={this.handleChange} />
             <input className="button" type="submit" value="Push" />
           </form>
-          <pre className="AppBody-fb-db">{JSON.stringify(this.state.data, null, 2)}</pre>
+          <pre className="AppBody-fb-db">{JSON.stringify(this.state.guides, null, 2)}</pre>
+        </div>
+
+        <p className="App-intro">
+          <code><b>Cloud Storage</b></code>
+        </p>
+        <div className="AppBody">
+          <FileInput
+            className="file"
+            accept=".png,.gif,.jpg"
+            placeholder="Select an image"
+            onChange={this.handleFileSubmit}
+          />
+
+          <div className="App-images">
+            {this.displayUserImages()}
+          </div>
         </div>
       </div>
     );

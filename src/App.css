@@ -66,12 +66,20 @@ a {
   background: #f1f1f1
 }
 
-.App-form {
-   text-align: left;
-  border-radius: 4px;
-  padding: 15px;
-  background: #f1f1f1
+.AppBody .file {
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
 }
+
+.App-form {
+  text-align: left;
+  border-radius: 4px;
+}
+
 .App-form .text {
   padding: .5rem .75rem;
   font-size: 1rem;
@@ -79,7 +87,7 @@ a {
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
   border: 1px solid rgba(0,0,0,.15);
-  width: 460px;
+  width: 490px;
 }
 
 .App-form .button {
@@ -95,4 +103,29 @@ a {
     -webkit-transition: all .2s ease-in-out;
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+}
+
+.AppBody .file {
+  padding: .5rem .75rem;
+  font-size: 1rem;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  margin-bottom: 20px;
+}
+
+.App-images {
+  text-align: left;
+  border: 4px solid #f1f1f1;
+  border-radius: 4px;
+  padding: 5px;
+  margin-bottom: 50px;
+}
+
+.App-image {
+  margin: 3px;
+  width: 193px;
+  vertical-align: top;
+  border-radius: 4px;
 } 
