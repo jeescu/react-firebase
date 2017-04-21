@@ -1,9 +1,9 @@
-# React + Firebase sample
+# React + Firebase Setup
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 ### Includes:
-- Setup Firebase
+- Firebase setup
 - Authentication
 - Database: Retrieve and push data
 - Cloud Storage: Upload file and save to database
@@ -19,7 +19,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ```
 
 ### Deployment process with firebase
-1. Install firebase tool globally. (You may need `sudo` here)
+1. Install **Firebase Tools** globally. (You may need `sudo` here)
 ```
 > npm install -g firebase-tools
 ```
@@ -39,8 +39,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Install dependencies.
 - Choose a `build` name directory since we build our app.
 - Select **Yes** for configuring single app page. This is suitable also when app is using `react-router`.
-
-**Firebase initialization complete!**
+- **Firebase initialization complete!**
 
 5. Then we will build our app.
 ```
