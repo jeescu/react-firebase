@@ -9,7 +9,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Cloud Storage: Upload file and save to database
 
 ### Getting Started
-- Create your db in `http://console.firebase.google.com`.
+- Create your Firebase Project in `http://console.firebase.google.com`.
 - Copy config in dashboard's  **Web Setup** and paste to `firebase.js`.
 - Clone project and install dependencies.
 ```
@@ -50,6 +50,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 > firebase deploy
 ```
 Access your running application to the given **Hosting URL**.
+
+**__Important__**
+- Make sure to rebuild your app if you made changes and want to deploy again.
 
 
 
