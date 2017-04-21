@@ -30,7 +30,8 @@ class App extends Component {
 
   componentDidMount() {
     auth.onAuthStateChanged((currentUser) => {
-
+      this.setState({ currentUser: currentUser || {} });      
+      
       if (currentUser) {
         // Init current user Refs
         this.userRef = database.ref('/users').child(currentUser.uid);
@@ -56,7 +57,8 @@ class App extends Component {
           }
         });
 
-        this.setState({ currentUser });
+      } else {
+        this.setState({ guides: null, userImages: null });
       }
     });
   }
