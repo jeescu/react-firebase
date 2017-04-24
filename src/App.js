@@ -55,7 +55,7 @@ class App extends Component {
         this.userRef.once('value', (snapshot) => {
           const userData = snapshot.val();
           if (!userData) {
-            this.userRef.set({ displayName: currentUser.displayName });
+            this.userRef.set({ name: currentUser.displayName });
           }
         });
 

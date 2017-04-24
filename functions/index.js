@@ -17,8 +17,10 @@ exports.newMessageAlert = functions.database.ref('/guides/{guide}')
             .then(snapshot => {
                 const tokens = [];
                 snapshot.forEach(user => {
+                    const userKey = user.key;
                     const token = user.child('token').val();
-                    if (token) tokens.push(token);
+                    // get other user tokens except the sender
+                    if (userKey !== guide.uid && token) tokens.push(token);
                 });
                 return tokens;                
             });
