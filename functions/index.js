@@ -8,7 +8,7 @@ var functions = require('firebase-functions');
 // });
 
 var admin = require('firebase-admin');
-var newMessageAlert = functions.database.ref('/guides/{guide}')
+exports.newMessageAlert = functions.database.ref('/guides/{guide}')
     .onWrite(event => {
         const message = event.data.val();
         const getTokens = admin.database().ref('users').once('value')
