@@ -19,16 +19,16 @@ exports.newMessageAlert = functions.database.ref('/guides/{guide}')
                 snapshot.forEach(user => {
                     const token = user.child('token').val();
                     if (token) tokens.push(token);
-                    return tokens;
-                })
+                });
+                return tokens;                
             });
         
         const getAuthor = admin.auth().getUser(guide.uid);
 
         Promise.all([getTokens, getAuthor]).then(([ tokens, author ]) => {
             const payload = {
-                notifications: {
-                    title: `React + Firebase from ${author.name}`,
+                notification: {
+                    title: `React + Firebase from ${author.displayName}`,
                     body: guide.content,
                     icon: author.photoURL
                 }
