@@ -1,4 +1,5 @@
 var functions = require('firebase-functions');
+var admin = require('firebase-admin');
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -7,10 +8,11 @@ var functions = require('firebase-functions');
 //  response.send("Hello from Firebase!");
 // });
 
-var admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+
 exports.newMessageAlert = functions.database.ref('/guides/{guide}')
     .onWrite(event => {
-        const message = event.data.val();
+        const guide = event.data.val();
         const getTokens = admin.database().ref('users').once('value')
             .then(snapshot => {
                 const tokens = [];
@@ -23,10 +25,10 @@ exports.newMessageAlert = functions.database.ref('/guides/{guide}')
         
         const getAuthor = admin.auth().getUser(guide.uid);
 
-        Promise.all(getTokens, getAuthor).then(([ tokens, author ]) => {
+        Promise.all([getTokens, getAuthor]).then(([ tokens, author ]) => {
             const payload = {
                 notifications: {
-                    title: `Title .. ${author.name}`,
+                    title: `React + Firebase from ${author.name}`,
                     body: guide.content,
                     icon: author.photoURL
                 }

@@ -10,6 +10,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
+// logging our messaging notification
 messaging.onMessage(payload => {
   console.log(payload);
 })
