@@ -17,4 +17,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # firebase deployment generated files
-.firebase-debug.log*
+firebase-debug.log*
