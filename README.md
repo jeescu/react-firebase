@@ -50,13 +50,14 @@ Follow this steps to get started.
 1.  Create a file named `firebase-messaging-sw.js` in public folder to serve it statically in the host.
 This file is our [Service Worker](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers) for messaging. Follow this [guide](https://firebase.google.com/docs/cloud-messaging/js/receive#handle_messages_when_your_web_app_is_in_the_foreground). 
 You can find your **sender id** located at your project `settings > cloud functions > sender id`
-
 - Create handler here for showing the notification in the device.
 
 2. Create the function in `function/index.js`. See the file.
 
 3. Create file `request-messaging-permission` to notify new logged-in users if they want to allow notification.
 - Apply this method during user login in the app.
+
+4. Check function logs in firebase console.
 
 ### Deployment process with firebase
 1. Install **Firebase Tools** globally. (You may need `sudo` here)
