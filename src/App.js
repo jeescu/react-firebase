@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { database, auth, googleAuthProvider, storage } from './firebase';
+import registerMessaging from './request-messaging-permission';
 
 import FileInput from 'react-file-input';
 
@@ -48,7 +49,8 @@ class App extends Component {
             this.setState({ userImages });
           }
         });
-
+        // register function messaging alert for this user
+        registerMessaging(currentUser);
         // Add user to users database if not exist
         this.userRef.once('value', (snapshot) => {
           const userData = snapshot.val();
