@@ -55,7 +55,7 @@ class App extends Component {
         this.userRef.once('value', (snapshot) => {
           const userData = snapshot.val();
           if (!userData) {
-            this.userRef.set({ name: currentUser.displayName });
+            this.userRef.set({ displayName: currentUser.displayName });
           }
         });
 
@@ -73,7 +73,11 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.guidesRef.push({ name: this.state.newData });
+    const { newData, currentUser } = this.state;
+    this.guidesRef.push({
+      uid: currentUser.uid,
+      content: newData
+    });
   }
 
   handleFileSubmit(event) {
