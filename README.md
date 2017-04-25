@@ -43,7 +43,7 @@ We can also listen to state changes while the file is uploading which we can dis
 
 ### Cloud Functions
 See [Cloud Functions](https://firebase.google.com/docs/functions/get-started) for more details.
-
+Checkout the [examples](https://github.com/firebase/functions-samples) of other functions
 The example here is creating message alert using cloud functions
 
 Follow this steps to get started.
